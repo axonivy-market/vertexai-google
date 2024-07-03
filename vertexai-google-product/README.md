@@ -1,6 +1,7 @@
 # Vertex AI Google
 
-- Gemini 1.5 Pro is a foundation model that performs well at a variety of multimodal tasks such as visual understanding, classification, summarization, and creating content from image. It's adept at processing visual and text inputs such as photographs and screenshots.
+- Gemini 1.5 Pro is a foundation model from Google that performs well at a variety of multimodal tasks such as visual understanding, classification, summarization, and creating content from image. It's adept at processing visual and text inputs such as photographs and screenshots.
+- Vertex AI Gemini 1.5 Pro is a product from Google that has been specifically optimized and integrated into Google's Vertex AI platform.
 - Our app helps user to chat directly with Gemini 1.5 and VertexAI Gemini 1.5 Pro by sending text and images. It seamlessly allows to toggle between 2 applications together.
 
 ## Demo
