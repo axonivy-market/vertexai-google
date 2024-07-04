@@ -18,10 +18,10 @@ For our connector, we have focused on the Gemini model. Gemini is an AI model, o
 
 ![](images/select-model-to-chat.jpg) 
 
-Note: For our simple "Cat-use-case" it does not make a difference using the Vertex-AI-API or the Gemini-model directly.
+Note: For our simple "Cat-Use-Case" it does not make a difference using the Vertex-AI-Gemini-API or the Gemini-API directly.
 
-Use Vertex AI if you rather would like to use the cloud based Google AI universe (BigDataQuery, ModelTraining and - deployment, Monitoring and logging).
-If you are looking for a rather flexible, low-cost and ease of use API than use the Gemini-API directly.
+- Use **Vertex AI Gemini API** if you rather would like to use the cloud based Google AI universe (BigDataQuery, ModelTraining and - deployment, Monitoring and logging).
+- If you are looking for a rather flexible, low-cost and ease of use API than use the **Gemini-API** directly.
 
 ## Setup
 
