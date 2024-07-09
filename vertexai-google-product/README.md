@@ -1,21 +1,27 @@
 # Vertex AI Google
 
-- Gemini 1.5 Pro is a foundation model that performs well at a variety of multimodal tasks such as visual understanding, classification, summarization, and creating content from image. It's adept at processing visual and text inputs such as photographs and screenshots.
-- Our app helps user to chat directly with Gemini 1.5 and VertexAI Gemini 1.5 Pro by sending text and images. It seamlessly allows to toggle between 2 applications together.
+Vertex AI is a platform offered by Google Cloud designed specifically for developing and deploying machine learning models. It provides a suite of services and tools to support the entire lifecycle of machine learning projects, from data processing and preparation to model development, deployment, and management in production. 
+
+For our connector, we have focused on the Gemini model. Gemini is an AI model, optimized for multimodal tasks, particularly **processing visual and textual inputs**. It enables functionalities such as 
+- visual understanding
+- classification
+- summarization
+- and text generation based on images.
 
 ## Demo
 
-### Submit with model VertexAI-Gemini
-
-![](images/chat-with-vertexAi.jpg)
-
-### Submit with model Gemini
+### Use Case: Text Generation based on images
 
 ![](images/chat-with-gemini.jpg)
 
 ### Switch between the two models using a dropdown menu
 
-![](images/select-model-to-chat.jpg)
+![](images/select-model-to-chat.jpg) 
+
+Note: For our simple "Cat-Use-Case" it does not make a difference using the Vertex-AI-Gemini-API or the Gemini-API directly.
+
+- Use **Vertex AI Gemini API** if you rather would like to use the cloud based Google AI universe (BigDataQuery, ModelTraining and - deployment, Monitoring and logging).
+- If you are looking for a rather flexible, low-cost and ease of use API than use the **Gemini-API** directly.
 
 ## Setup
 
