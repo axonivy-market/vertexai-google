@@ -11,6 +11,7 @@
       "config" : {
         "callSignature" : "chatWithAi",
         "outLink" : "chatWithAi.ivp",
+        "tags" : "demo",
         "case" : { }
       },
       "visual" : {
