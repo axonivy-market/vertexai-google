@@ -93,7 +93,7 @@ and replace the values with your given setup.
 
 example:
 - `Variables.gemini.apiKey: 'AIzaSyDaxbn4Ragu_cV8tiaMI'`
-- `Variables.vertexai-gemini.projectId: 'AIzaSyDaxbn4Ragu_cVsN26pY8t'`
-- `Variables.vertexai-gemini.location: 'generate-text-from-image'`
-- `Variables.vertexai-gemini.modelName: 'us-east1'`
+- `Variables.vertexai-gemini.projectId: 'generate-text-from-image'`
+- `Variables.vertexai-gemini.location: 'us-east1'`
+- `Variables.vertexai-gemini.modelName: 'gemini-1.5-pro-001'`
 - `Variables.vertexai-gemini.keyFilePath: 'configuration/data/generate-images-for-process-27dba695f5f5.json'`
