@@ -8,10 +8,14 @@
 
 Variables:
   gemini:
+    # The Api gemini key that get from https://aistudio.google.com/app/apikey. ex: 'AIzaSyDaxbn4Ragu_cV8tiaMI'
     apiKey: ''
   vertexai-gemini:
+    # The project id from project that is created in google cloud. ex: 'generate-text-from-image'
     projectId: ''
+    # The region zone of the project https://cloud.google.com/compute/docs/regions-zones. ex: 'us-east1'
     location: ''
+    # The resourceId of gemini model that we want to use (https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001) ex: 'gemini-1.5-pro-001'
     modelName: ''
+    # The full url of the credential json file. ex: 'D:\\Credentials\\generate-images-for-process-27dba695f5f5.json'
     keyFilePath: ''
-
