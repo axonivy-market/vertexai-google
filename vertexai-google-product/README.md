@@ -68,13 +68,9 @@ Note: For our simple "Cat-Use-Case" it does not make a difference using the Vert
 ![](images/get-Key.jpg)
 
 #### "ADD Key" -> "Create new Key" -> "Json" -> Google Cloud automatically download a credential json file.
+
 #### Keep this file and put the path of the file to `Variables.vertexai-gemini.keyFilePath`
-##### Using Axon Ivy Engine
-- We put the file to configuration folder and set the relative url to `Variables.vertexai-gemini.keyFilePath`
-- ex: 'configuration/data/generate-images-for-process-27dba695f5f5.json'
-##### Using Axon Ivy Designer
-- Set the absolute file path url to `Variables.vertexai-gemini.keyFilePath`
-- ex: 'D:/Credentials/generate-images-for-process-27dba695f5f5.json'
+
 #### Select the modelName from: [Vertex AI Gemini Model name](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001)
 
 #### Select the Location from: [Vertex AI Location/Region](https://cloud.google.com/compute/docs/regions-zones)
@@ -88,10 +84,3 @@ Add the following `Variables` to your `variables.yaml`:
 - `Variables.gemini.apiKey`
 
 and replace the values with your given setup.
-
-example:
-- `Variables.gemini.apiKey: 'AIzaSyDaxbn4Ragu_cV8tiaMI'`
-- `Variables.vertexai-gemini.projectId: 'generate-text-from-image'`
-- `Variables.vertexai-gemini.location: 'us-east1'`
-- `Variables.vertexai-gemini.modelName: 'gemini-1.5-pro-001'`
-- `Variables.vertexai-gemini.keyFilePath: 'configuration/data/generate-images-for-process-27dba695f5f5.json'`
