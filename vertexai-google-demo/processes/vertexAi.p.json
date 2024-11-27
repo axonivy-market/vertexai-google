@@ -1,5 +1,5 @@
 {
-  "format" : "10.0.0",
+  "$schema" : "https://json-schema.axonivy.com/process/12.0.0/process.json",
   "id" : "18FBD17FA8E55D35",
   "config" : {
     "data" : "com.axonivy.connector.vertexai.Data"
@@ -9,16 +9,18 @@
       "type" : "RequestStart",
       "name" : "chatWithAi.ivp",
       "config" : {
-        "callSignature" : "chatWithAi",
-        "outLink" : "chatWithAi.ivp",
-        "tags" : "demo",
-        "case" : { }
+        "signature" : "chatWithAi"
       },
+      "tags" : [
+        "demo"
+      ],
       "visual" : {
         "at" : { "x" : 136, "y" : 64 },
         "icon" : "res:/webContent/icons/logo.png?small"
       },
-      "connect" : { "id" : "f4", "to" : "f3" }
+      "connect" : [
+        { "id" : "f4", "to" : "f3" }
+      ]
     }, {
       "id" : "f1",
       "type" : "TaskEnd",
@@ -30,13 +32,14 @@
       "type" : "DialogCall",
       "name" : "chatWithAi",
       "config" : {
-        "dialogId" : "com.axonivy.connector.vertexai.chatWithAi",
-        "startMethod" : "start()"
+        "dialog" : "com.axonivy.connector.vertexai.chatWithAi:start()"
       },
       "visual" : {
         "at" : { "x" : 264, "y" : 64 },
         "icon" : "res:/webContent/icons/logo.png"
       },
-      "connect" : { "id" : "f2", "to" : "f1" }
+      "connect" : [
+        { "id" : "f2", "to" : "f1" }
+      ]
     } ]
 }
