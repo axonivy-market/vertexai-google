@@ -13,6 +13,8 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.PrimeFaces;
+
 import com.axonivy.connector.vertexai.entities.*;
 import com.axonivy.connector.vertexai.enums.Model;
 import com.axonivy.connector.vertexai.enums.Role;
@@ -25,11 +27,13 @@ public class GeminiDataBean {
 	private Model model;
 	private List<Conversation> conversations;
 	private GeminiDataRequestService geminiDataRequestService = new GeminiDataRequestService();
-
+	private String errorMessage;
+	
 	private static final String CODE_RESPONSE_PATTERN = "```(.*?)```";
 	private static final String PRE_TAG_PATTERN = "(<pre.*?>.*?</pre>)";
 	private static final String EMOJI_PATTERN = "[\\uD83C-\\uDBFF\\uDC00-\\uDFFF]";
 	private static final Set<String> PREFIXES = Set.of("html", "xml", "xhtml");
+	private static final String OPEN_ERROR_DIALOG_SCRIPT = "PF('errorDialog').show();";
 	private static String PRE_TAG_MAPPING = "<pre style=\"background-color: black;\"> <code>%s</code> </pre>";
 
 	@PostConstruct
@@ -39,9 +43,14 @@ public class GeminiDataBean {
 	}
 
 	public void onSendRequest() throws Exception {
-		conversations = geminiDataRequestService.sendRequestToGemini(inputtedMessage, model);
-		addCodesToPreTagIfPresent(conversations);
-		inputtedMessage = StringUtils.EMPTY;
+		try {
+			conversations = geminiDataRequestService.sendRequestToGemini(inputtedMessage, model);
+			addCodesToPreTagIfPresent(conversations);
+			inputtedMessage = StringUtils.EMPTY;
+		} catch (Exception e) {
+			errorMessage = e.getMessage();
+			PrimeFaces.current().executeScript(OPEN_ERROR_DIALOG_SCRIPT);
+		}
 	}
 
 	public void addCodesToPreTagIfPresent(List<Conversation> conversations) {
@@ -154,4 +163,13 @@ public class GeminiDataBean {
 	public void setConversations(List<Conversation> conversations) {
 		this.conversations = conversations;
 	}
+
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	
 }

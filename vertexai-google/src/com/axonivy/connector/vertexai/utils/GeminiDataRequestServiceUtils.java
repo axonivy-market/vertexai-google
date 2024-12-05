@@ -30,7 +30,16 @@ public class GeminiDataRequestServiceUtils {
 	public static final String IMG_SRC_ATTR_PATTERN = "data:image\\/[^;]+;base64,([^\"]+)";
 
 	public static InputStream getInputStream(String keyFilePath) throws IOException {
-		return new FileInputStream(keyFilePath);
+		if (StringUtils.isBlank(keyFilePath)) {
+			throw new IOException("VertexAi credential file path is empty");
+		}
+
+		try {
+			return new FileInputStream(keyFilePath);
+		} catch (IOException exception) {
+			throw new IOException("Could not find VertexAi credential file by path " + keyFilePath);
+		}
+
 	}
 
 	public Content formatRequest(String message) {
