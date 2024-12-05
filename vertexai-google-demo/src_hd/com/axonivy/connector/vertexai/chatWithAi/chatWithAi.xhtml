@@ -13,6 +13,10 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="layouts/styles/chatwithai.css" />
 			<h:form id="form" styleClass="form-container">
+				<p:dialog header="Error" widgetVar="errorDialog" modal="true"
+					closable="true">
+					<h:outputText value="#{managedBean.errorMessage}" />
+				</p:dialog>
 				<p:panelGrid columns="1" layout="grid">
 					<div id="model-option">
 						<p:outputLabel for="option" value="Model:" />
