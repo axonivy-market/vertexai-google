@@ -13,10 +13,21 @@
 		<ui:define name="content">
 			<h:outputStylesheet name="layouts/styles/chatwithai.css" />
 			<h:form id="form" styleClass="form-container">
-				<p:dialog header="Error" widgetVar="errorDialog" modal="true"
-					closable="true">
-					<h:outputText value="#{managedBean.errorMessage}" />
+				<p:dialog id="errorDialog" widgetVar="errorDialog" header="Error"
+					showEffect="fade" hideEffect="fade" closable="true"
+					responsive="true">
+					<div class="icon-error-message">
+						<i class="pi pi-exclamation-triangle"
+							style="font-size: 24px; color: orange;"></i>
+						<h:outputText class="error-message" value="#{managedBean.errorMessage}"/>
+					</div>
+					<br />
+					<div class="cancel-error-dialog-button">
+						<p:commandButton value="Cancel"
+							onclick="PF('errorDialog').hide();" class="ui-confirmdialog-yes" />
+					</div>
 				</p:dialog>
+
 				<p:panelGrid columns="1" layout="grid">
 					<div id="model-option">
 						<p:outputLabel for="option" value="Model:" />
