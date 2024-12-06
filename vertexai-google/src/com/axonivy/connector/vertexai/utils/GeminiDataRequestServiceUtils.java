@@ -31,7 +31,7 @@ public class GeminiDataRequestServiceUtils {
 
 	public static InputStream getInputStream(String keyFilePath) throws IOException {
 		if (StringUtils.isBlank(keyFilePath)) {
-			throw new IOException("VertexAi credential file path is empty");
+			throw new IOException("Vertex AI credential file path is missing. Please provide it and try again!");
 		}
 
 		try {
