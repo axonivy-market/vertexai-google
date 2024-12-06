@@ -28,33 +28,33 @@
 }
 
 .output-text {
-	background-color: var(--surface-a);
+	background-color: var(- -surface-a);
 	white-space: pre-line;
 	display: block;
 	padding: 10px 20px;
 }
 
 .form-container {
-    display: flex;
-    flex-direction: column;
-    height: 95vh;
+	display: flex;
+	flex-direction: column;
+	height: 95vh;
 }
 
 .ui-panelgrid-blank {
-    flex: 1;
-    overflow-y: auto;
+	flex: 1;
+	overflow-y: auto;
 }
 
 .form-bottom {
-    display: flex;
-    flex-direction: column;
-    margin-top: auto;
+	display: flex;
+	flex-direction: column;
+	margin-top: auto;
 }
 
 .command-btns {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 10px;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
 }
 
 .cancel-error-dialog-button {
