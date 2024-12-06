@@ -56,3 +56,18 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
+.cancel-error-dialog-button {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.icon-error-message {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.error-message {
+	font-size: 14px;
+}
