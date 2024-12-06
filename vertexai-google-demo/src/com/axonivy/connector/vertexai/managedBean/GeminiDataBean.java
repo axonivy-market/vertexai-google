@@ -13,7 +13,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
+import org.primefaces.PF;
 
 import com.axonivy.connector.vertexai.entities.*;
 import com.axonivy.connector.vertexai.enums.Model;
@@ -42,14 +42,14 @@ public class GeminiDataBean {
 		geminiDataRequestService.cleanData();
 	}
 
-	public void onSendRequest() throws Exception {
+	public void onSendRequest() {
 		try {
 			conversations = geminiDataRequestService.sendRequestToGemini(inputtedMessage, model);
 			addCodesToPreTagIfPresent(conversations);
 			inputtedMessage = StringUtils.EMPTY;
 		} catch (Exception e) {
 			errorMessage = e.getMessage();
-			PrimeFaces.current().executeScript(OPEN_ERROR_DIALOG_SCRIPT);
+			PF.current().executeScript(OPEN_ERROR_DIALOG_SCRIPT);
 		}
 	}
 

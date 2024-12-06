@@ -1,10 +1,20 @@
 package com.axonivy.connector.vertexai.test.utils;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
 import com.axonivy.connector.vertexai.entities.Content;
 import com.axonivy.connector.vertexai.utils.GeminiDataRequestServiceUtils;
 import com.google.gson.Gson;
@@ -15,8 +25,12 @@ import ch.ivyteam.ivy.environment.IvyTest;
 public class GeminiDataRequestServiceUtilTest {
 	public static final String IMG_TAG_PATTERN = "<img\\s+[^>]*>";
 	public static final String IMG_SRC_ATTR_PATTERN = "data:image\\/[^;]+;base64,([^\"]+)";
+	
 
 	private GeminiDataRequestServiceUtils geminiDataRequestServiceUtils = new GeminiDataRequestServiceUtils();
+	
+    @TempDir
+    Path tempDir;
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
@@ -82,6 +96,36 @@ public class GeminiDataRequestServiceUtilTest {
 		Content result = geminiDataRequestServiceUtils.formatRequest(input);
 		assertThat(result).usingRecursiveComparison().ignoringFields("id")
 				.isEqualTo(new Gson().fromJson(expectedResult, Content.class));
+	}
+	
+    @Test
+    void testGetInputStream_BlankKeyFilePath() {
+        IOException exception = assertThrows(IOException.class, () -> {
+        	GeminiDataRequestServiceUtils.getInputStream("");
+        });
+        assertEquals("Vertex AI credential file path is missing. Please provide it and try again!", exception.getMessage());
+    }
+    
+    @Test
+    void testGetInputStream_FileNotFound() {
+        String invalidFilePath = tempDir.resolve("nonexistent-file.txt").toString();
+
+        IOException exception = assertThrows(IOException.class, () -> {
+        	GeminiDataRequestServiceUtils.getInputStream(invalidFilePath);
+        });
+        assertEquals("Could not find VertexAi credential file by path " + invalidFilePath, exception.getMessage());
+    }
+    
+	@Test
+	void testGetInputStream_ValidKeyFilePath() throws IOException {
+		// Create a temporary file
+		Path tempFile = tempDir.resolve("valid-file.txt");
+		File file = tempFile.toFile();
+		assertTrue(file.createNewFile());
+
+		try (InputStream inputStream = GeminiDataRequestServiceUtils.getInputStream(tempFile.toString())) {
+			assertNotNull(inputStream);
+		}
 	}
 
 }
