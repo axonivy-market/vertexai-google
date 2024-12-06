@@ -17,9 +17,9 @@
 					showEffect="fade" hideEffect="fade" closable="true"
 					responsive="true">
 					<div class="icon-error-message">
-						<i class="pi pi-exclamation-triangle"
-							style="font-size: 24px; color: orange;"></i>
-						<h:outputText class="error-message" value="#{managedBean.errorMessage}"/>
+						<i class="pi pi-exclamation-triangle" />
+						<h:outputText class="error-message"
+							value="#{managedBean.errorMessage}" />
 					</div>
 					<br />
 					<div class="cancel-error-dialog-button">
@@ -82,32 +82,28 @@
 				</div>
 			</h:form>
 
-			<script type="text/javascript">	    
-				 function handlePaste(event) {
-				 	var clipboardData = event.clipboardData || window.clipboardData;
-            		var items = clipboardData.items;
-	            	for (var i = 0; i &lt; items.length; i++) {
-	            		if (items[i].type.indexOf('image') !== -1) {
-	            			event.preventDefault();
-		                    var file = items[i].getAsFile();
-		                    var reader = new FileReader();
-		
-		                    reader.onload = function(evt) {
-		                        var base64Image = evt.target.result;
-		                        // Insert the image into the editor
-		                        var quill = PF('editor').editor;
-		                        var range = quill.getSelection();
-		                        quill.insertEmbed(range.index, 'image', base64Image);
-		                    };
-		
-		                    reader.readAsDataURL(file);
-		                }
-	            	}
-	   
-        		}
-        		document.addEventListener('paste', function(event) {
-		           handlePaste(event);
-		        });
+			<script type="text/javascript">
+				function handlePaste(event) {
+					var clipboardData = event.clipboardData || window.clipboardData;
+					var items = clipboardData.items;
+					for (var i = 0; i &lt; items.length; i++) {
+						if (items[i].type.indexOf('image') !== -1) {
+							event.preventDefault();
+							var file = items[i].getAsFile();
+							var reader = new FileReader();
+							reader.onload = function(evt) {
+								var base64Image = evt.target.result;
+								var quill = PF('editor').editor;
+								var range = quill.getSelection();
+								quill.insertEmbed(range.index, 'image', base64Image);
+							};
+						reader.readAsDataURL(file);
+						}
+					}
+				}
+				document.addEventListener('paste', function(event) {
+					handlePaste(event);
+				});
 			</script>
 		</ui:define>
 	</ui:composition>
