@@ -28,7 +28,7 @@
 }
 
 .output-text {
-	background-color: var(- -surface-a);
+	background-color: var(--surface-a);
 	white-space: pre-line;
 	display: block;
 	padding: 10px 20px;
