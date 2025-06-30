@@ -47,7 +47,6 @@ public class GeminiDataRequestServiceTest {
 
 	@BeforeEach
 	void beforeEach(ExtensionContext context, AppFixture fixture) {
-		geminiDataRequestService = new GeminiDataRequestService();
 		if (context.getDisplayName().equals(VertexaiCommonConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
 			VertexaiUtils.setUpConfigForApiTest(fixture);
 		} else {
@@ -56,7 +55,7 @@ public class GeminiDataRequestServiceTest {
 			mockedServiceAccountCredentialsStatic = Mockito.mockStatic(ServiceAccountCredentials.class);
 			httpClientMockedStatic = mockStatic(HttpClient.class);
 		}
-
+		geminiDataRequestService = new GeminiDataRequestService();
 	}
 
 	@AfterEach
