@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import org.apache.commons.io.IOUtils;
 
 public class DataMock {
-	
+
 	public static String load(String path) {
 		try (InputStream is = DataMock.class.getResourceAsStream(path)) {
 			return IOUtils.toString(is, StandardCharsets.UTF_8);
@@ -15,5 +15,5 @@ public class DataMock {
 			throw new RuntimeException("Failed to read resource: " + path);
 		}
 	}
-	
+
 }
