@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.axonivy.connector.vertexai.entities.Content;
+import com.axonivy.connector.vertexai.mock.utils.VertexaiUtils;
 import com.axonivy.connector.vertexai.utils.GeminiDataRequestServiceUtils;
 import com.google.gson.Gson;
 import ch.ivyteam.ivy.environment.AppFixture;
@@ -25,50 +26,52 @@ import ch.ivyteam.ivy.environment.IvyTest;
 public class GeminiDataRequestServiceUtilTest {
 	public static final String IMG_TAG_PATTERN = "<img\\s+[^>]*>";
 	public static final String IMG_SRC_ATTR_PATTERN = "data:image\\/[^;]+;base64,([^\"]+)";
-	
+
 
 	private GeminiDataRequestServiceUtils geminiDataRequestServiceUtils = new GeminiDataRequestServiceUtils();
-	
-    @TempDir
-    Path tempDir;
+
+	@TempDir
+	Path tempDir;
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
-		fixture.var("vertexai-gemini.projectId", "generate-images-for-process");
-		fixture.var("vertexai-gemini.location", "us-central");
-		fixture.var("vertexai-gemini.modelName", "gemini-1.5-pro-preview-0409");
-		fixture.var("vertexai-gemini.keyFilePath", "D:\\test.json");
-		fixture.var("gemini.apiKey", "AIzaSyDaxbn4Ragu");
+		VertexaiUtils.setUpConfigForMockServer(fixture);
 	}
 
 	@Test
 	public void extractHtmlString_test() {
-		String input = "<p>TEST <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAIAAADOjonJAAABDk\" /></p>";
-		String expectedResult = "TEST <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAIAAADOjonJAAABDk\">";
+		String input =
+				"<p>TEST <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAIAAADOjonJAAABDk\" /></p>";
+		String expectedResult =
+				"TEST <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAIAAADOjonJAAABDk\">";
 		String result = geminiDataRequestServiceUtils.extractHtmlString(input);
 		assertEquals(result, expectedResult);
 	}
 
 	@Test
 	public void extractHtmlString_multiple_p_tags_test() {
-		String input = "<p>What is in the image ? </p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\" /></p>";
-		String expectedResult = "What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">";
+		String input =
+				"<p>What is in the image ? </p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\" /></p>";
+		String expectedResult =
+				"What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">";
 		String result = geminiDataRequestServiceUtils.extractHtmlString(input);
 		assertEquals(result, expectedResult);
 	}
 
 	@Test
 	public void extractImgTagsFromArticleContent_test() {
-		String input = "What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">";
-		Set<String> expectedResult = Set
-				.of("<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">");
+		String input =
+				"What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">";
+		Set<String> expectedResult =
+				Set.of("<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\">");
 		Set<String> result = geminiDataRequestServiceUtils.extractImgTagsFromArticleContent(input);
 		assertEquals(result, expectedResult);
 	}
 
 	@Test
 	public void extractImgAttribute_test() {
-		String input = "What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAe\">";
+		String input =
+				"What is in the image ? <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAe\">";
 
 		String result = geminiDataRequestServiceUtils.extractImgAttribute(input);
 
@@ -77,7 +80,8 @@ public class GeminiDataRequestServiceUtilTest {
 
 	@Test
 	public void formatRequest_test() {
-		String input = "<p>What is in the image ? </p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\" /></p>";
+		String input =
+				"<p>What is in the image ? </p><p><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEsAAAAhCAIAAAAeQ8GBg;\" /></p>";
 		String expectedResult = """
 								{
 				  "role": "user",
@@ -97,25 +101,25 @@ public class GeminiDataRequestServiceUtilTest {
 		assertThat(result).usingRecursiveComparison().ignoringFields("id")
 				.isEqualTo(new Gson().fromJson(expectedResult, Content.class));
 	}
-	
-    @Test
-    void testGetInputStream_BlankKeyFilePath() {
-        IOException exception = assertThrows(IOException.class, () -> {
-        	GeminiDataRequestServiceUtils.getInputStream("");
-        });
-        assertEquals("Vertex AI credential file path is missing. Please provide it and try again!", exception.getMessage());
-    }
-    
-    @Test
-    void testGetInputStream_FileNotFound() {
-        String invalidFilePath = tempDir.resolve("nonexistent-file.txt").toString();
 
-        IOException exception = assertThrows(IOException.class, () -> {
-        	GeminiDataRequestServiceUtils.getInputStream(invalidFilePath);
-        });
-        assertEquals("Could not find VertexAi credential file by path " + invalidFilePath, exception.getMessage());
-    }
-    
+	@Test
+	void testGetInputStream_BlankKeyFilePath() {
+		IOException exception = assertThrows(IOException.class, () -> {
+			GeminiDataRequestServiceUtils.getInputStream("");
+		});
+		assertEquals("Vertex AI credential file path is missing. Please provide it and try again!", exception.getMessage());
+	}
+
+	@Test
+	void testGetInputStream_FileNotFound() {
+		String invalidFilePath = tempDir.resolve("nonexistent-file.txt").toString();
+
+		IOException exception = assertThrows(IOException.class, () -> {
+			GeminiDataRequestServiceUtils.getInputStream(invalidFilePath);
+		});
+		assertEquals("Could not find VertexAi credential file by path " + invalidFilePath, exception.getMessage());
+	}
+
 	@Test
 	void testGetInputStream_ValidKeyFilePath() throws IOException {
 		// Create a temporary file
