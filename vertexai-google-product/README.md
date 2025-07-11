@@ -84,4 +84,4 @@ Add the following `Variables` to your `variables.yaml`:
 and replace the values with your given setup.
 
 > [!NOTE]
-> This variable path `vertexai-gemini` is renamed to `vertexaiGemini` from 13.
+> The variable path `vertexai-gemini` is renamed to `vertexaiGemini` from 13.
