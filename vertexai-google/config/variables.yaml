@@ -10,7 +10,7 @@
 # Example Variables:
 #  gemini:
 #    apiKey: 'AIzaSyDax'
-#  vertexai-gemini:
+#  vertexaiGemini:
 #    projectId: 'generate-text-from-image'
 #    location: 'us-east1'
 #    modelName: 'gemini-1.5-pro-preview-0409'
@@ -21,7 +21,7 @@ Variables:
   gemini:
     # The Api gemini key that get from https://aistudio.google.com/app/apikey.
     apiKey: ''
-  vertexai-gemini:
+  vertexaiGemini:
     # The project id from project that is created in google cloud.
     projectId: ''
     # The region zone of the project https://cloud.google.com/compute/docs/regions-zones.
