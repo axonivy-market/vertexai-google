@@ -25,19 +25,19 @@ import ch.ivyteam.ivy.environment.IvyTest;
 public class GeminiDataRequestServiceUtilTest {
 	public static final String IMG_TAG_PATTERN = "<img\\s+[^>]*>";
 	public static final String IMG_SRC_ATTR_PATTERN = "data:image\\/[^;]+;base64,([^\"]+)";
-	
+
 
 	private GeminiDataRequestServiceUtils geminiDataRequestServiceUtils = new GeminiDataRequestServiceUtils();
-	
-    @TempDir
-    Path tempDir;
+
+	@TempDir
+	Path tempDir;
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
-		fixture.var("vertexai-gemini.projectId", "generate-images-for-process");
-		fixture.var("vertexai-gemini.location", "us-central");
-		fixture.var("vertexai-gemini.modelName", "gemini-1.5-pro-preview-0409");
-		fixture.var("vertexai-gemini.keyFilePath", "D:\\test.json");
+		fixture.var("vertexaiGemini.projectId", "generate-images-for-process");
+		fixture.var("vertexaiGemini.location", "us-central");
+		fixture.var("vertexaiGemini.modelName", "gemini-1.5-pro-preview-0409");
+		fixture.var("vertexaiGemini.keyFilePath", "D:\\test.json");
  /**
   * Dear Bug Hunter,
   * This credential is intentionally included for educational purposes only and does not provide access to any production systems.
@@ -102,7 +102,7 @@ public class GeminiDataRequestServiceUtilTest {
 		assertThat(result).usingRecursiveComparison().ignoringFields("id")
 				.isEqualTo(new Gson().fromJson(expectedResult, Content.class));
 	}
-	
+
     @Test
     void testGetInputStream_BlankKeyFilePath() {
         IOException exception = assertThrows(IOException.class, () -> {
@@ -110,7 +110,7 @@ public class GeminiDataRequestServiceUtilTest {
         });
         assertEquals("Vertex AI credential file path is missing. Please provide it and try again!", exception.getMessage());
     }
-    
+
     @Test
     void testGetInputStream_FileNotFound() {
         String invalidFilePath = tempDir.resolve("nonexistent-file.txt").toString();
@@ -120,7 +120,7 @@ public class GeminiDataRequestServiceUtilTest {
         });
         assertEquals("Could not find VertexAi credential file by path " + invalidFilePath, exception.getMessage());
     }
-    
+
 	@Test
 	void testGetInputStream_ValidKeyFilePath() throws IOException {
 		// Create a temporary file
