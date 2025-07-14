@@ -69,7 +69,7 @@ Note: For our simple "Cat-Use-Case" it does not make a difference using the Vert
 
 #### "ADD Key" -> "Create new Key" -> "Json" -> Google Cloud automatically download a credential json file.
 
-#### Keep this file and put the path of the file to `Variables.vertexai-gemini.keyFilePath`
+#### Keep this file and put the path of the file to `Variables.vertexaiGemini.keyFilePath`
 
 #### Select the modelName from: [Vertex AI Gemini Model name](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001)
 
@@ -77,10 +77,11 @@ Note: For our simple "Cat-Use-Case" it does not make a difference using the Vert
 
 Add the following `Variables` to your `variables.yaml`:
 
-- `Variables.vertexai-gemini.projectId`
-- `Variables.vertexai-gemini.location`
-- `Variables.vertexai-gemini.modelName`
-- `Variables.vertexai-gemini.keyFilePath`
-- `Variables.gemini.apiKey`
+```
+@variables.yaml@
+```
 
 and replace the values with your given setup.
+
+> [!NOTE]
+> The variable path `vertexai-gemini` is renamed to `vertexaiGemini` from 13.
