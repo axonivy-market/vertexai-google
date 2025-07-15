@@ -32,10 +32,10 @@ public class GeminiDataRequestService {
 	public static final String GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key={0}";
 	public static final List<String> vertexAiScopes = List.of("https://www.googleapis.com/auth/cloud-platform");
 
-	public static String VERTEX_PROJECT_ID = Ivy.var().get("vertexai-gemini.projectId");
-	public static String VERTEX_LOCATION = Ivy.var().get("vertexai-gemini.location");
-	public static String VERTEX_MODEL_NAME = Ivy.var().get("vertexai-gemini.modelName");
-	public static String VERTEX_KEY_FILE_PATH = Ivy.var().get("vertexai-gemini.keyFilePath");
+	public static String VERTEX_PROJECT_ID = Ivy.var().get("vertexaiGemini.projectId");
+	public static String VERTEX_LOCATION = Ivy.var().get("vertexaiGemini.location");
+	public static String VERTEX_MODEL_NAME = Ivy.var().get("vertexaiGemini.modelName");
+	public static String VERTEX_KEY_FILE_PATH = Ivy.var().get("vertexaiGemini.keyFilePath");
 	public static String GEMINI_KEY = Ivy.var().get("gemini.apiKey");
 
 	private static List<Content> historyContents = new ArrayList<>();
