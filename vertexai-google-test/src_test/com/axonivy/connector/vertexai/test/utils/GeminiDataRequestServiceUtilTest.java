@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import com.axonivy.connector.vertexai.entities.Content;
-import com.axonivy.connector.vertexai.mock.utils.VertexaiUtils;
+import com.axonivy.connector.vertexai.mock.utils.VertexaiTestUtils;
 import com.axonivy.connector.vertexai.utils.GeminiDataRequestServiceUtils;
 import com.google.gson.Gson;
 import ch.ivyteam.ivy.environment.AppFixture;
@@ -35,7 +35,7 @@ public class GeminiDataRequestServiceUtilTest {
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
-		VertexaiUtils.setUpConfigForMockServer(fixture);
+		VertexaiTestUtils.setUpConfigForMockServer(fixture);
 	}
 
 	@Test
