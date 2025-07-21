@@ -8,7 +8,19 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Create Vertex AI key file
+        run: |
+          echo "${{ secrets.VERTEXAI_KEY_FILE_PATH }}" > vertex-key.json
+          echo "VERTEXAI_KEY_FILE_PATH=$(pwd)/vertex-key.json" >> $GITHUB_ENV
+        shell: bash
+          
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
     secrets:
-      mvnArgs: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=${{secrets.VERTEXAI_KEY_FILE_PATH}}
+      mvnArgs: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=${{env.VERTEXAI_KEY_FILE_PATH}}
