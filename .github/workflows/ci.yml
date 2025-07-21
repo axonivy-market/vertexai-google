@@ -11,4 +11,4 @@ jobs:
   build:
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
     secrets:
-      mvnArgs: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -DvertexaiKeyFilePath=${{secrets.VERTEXAI_KEY_FILE_PATH}}
+      mvnArgs: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=${{secrets.VERTEXAI_KEY_FILE_PATH}}
