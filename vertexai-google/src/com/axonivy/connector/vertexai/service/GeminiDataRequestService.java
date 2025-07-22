@@ -94,7 +94,6 @@ public class GeminiDataRequestService {
       String accessToken = getAccessToken();
       String vertexAiGeminiEndpoint =
           MessageFormat.format(VERTEX_URL, VERTEX_LOCATION, VERTEX_PROJECT_ID, VERTEX_MODEL_NAME);
-      Ivy.log().warn(vertexAiGeminiEndpoint);
       return HttpRequest.newBuilder().uri(URI.create(vertexAiGeminiEndpoint))
           .header(AUTHORIZATION_HEADER, BEARER + accessToken).header(CONTENT_TYPE_HEADER, APPLICATION_JSON_TYPE)
           .POST(HttpRequest.BodyPublishers.ofString(bodyRequestContent)).build();

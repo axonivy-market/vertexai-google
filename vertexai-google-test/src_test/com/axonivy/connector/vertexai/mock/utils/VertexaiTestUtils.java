@@ -8,21 +8,20 @@ public class VertexaiTestUtils {
     String vertexaiProjectId = System.getProperty("vertexaiProjectId");
     String vertexaiLocation = System.getProperty("vertexaiLocation");
     String vertexaiModelName = System.getProperty("vertexaiModelName");
-    String vertexaiKeyFilePath = System.getProperty("vertexaiKeyFilePath");
     String geminiApiKey = System.getProperty("geminiApiKey");
 
     fixture.var("gemini.apiKey", geminiApiKey);
-    fixture.var("vertexai-gemini.projectId", vertexaiProjectId);
-    fixture.var("vertexai-gemini.location", vertexaiLocation);
-    fixture.var("vertexai-gemini.modelName", vertexaiModelName);
-    fixture.var("vertexai-gemini.keyFilePath", vertexaiKeyFilePath);
+    fixture.var("vertexaiGemini.projectId", vertexaiProjectId);
+    fixture.var("vertexaiGemini.location", vertexaiLocation);
+    fixture.var("vertexaiGemini.modelName", vertexaiModelName);
+
   }
 
   public static void setUpConfigForMockServer(AppFixture fixture) {
-    fixture.var("vertexai-gemini.projectId", "generate-images-for-process");
-    fixture.var("vertexai-gemini.location", "us-central");
-    fixture.var("vertexai-gemini.modelName", "gemini-1.5-pro-preview-0409");
-    fixture.var("vertexai-gemini.keyFilePath", "D:\\test.json");
+    fixture.var("vertexaiGemini.projectId", "generate-images-for-process");
+    fixture.var("vertexaiGemini.location", "us-central");
+    fixture.var("vertexaiGemini.modelName", "gemini-1.5-pro-preview-0409");
+    fixture.var("vertexaiGemini.keyFilePath", "D:\\test.json");
  /**
   * Dear Bug Hunter,
   * This credential is intentionally included for educational purposes only and does not provide access to any production systems.

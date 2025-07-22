@@ -6,7 +6,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.http.HttpClient;
 import java.net.http.HttpResponse;
@@ -41,10 +43,14 @@ public class GeminiDataRequestServiceTest {
   MockedStatic<ServiceAccountCredentials> mockedServiceAccountCredentialsStatic;
   MockedStatic<HttpClient> httpClientMockedStatic;
 
+  private static File tempFile = null;
+
   @BeforeEach
   void beforeEach(ExtensionContext context, AppFixture fixture) {
     if (context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
       VertexaiTestUtils.setUpConfigForApiTest(fixture);
+      tempFile = createTempFile();
+      fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
     } else {
       VertexaiTestUtils.setUpConfigForMockServer(fixture);
       geminiDataRequestServiceMock = Mockito.mockStatic(GeminiDataRequestServiceUtils.class);
@@ -60,6 +66,8 @@ public class GeminiDataRequestServiceTest {
       geminiDataRequestServiceMock.close();
       mockedServiceAccountCredentialsStatic.close();
       httpClientMockedStatic.close();
+    } else {
+      tempFile.deleteOnExit();
     }
     geminiDataRequestService.cleanData();
   }
@@ -93,7 +101,8 @@ public class GeminiDataRequestServiceTest {
     HttpResponse<String> result = geminiDataRequestService.sendRequest(message, Model.VERTEXAI_GEMINI);
     if (isRealTest) {
       assertEquals(result.statusCode(), 403);
-      assertTrue(result.body().contains("Permission denied on resource project"));
+      assertTrue(
+          result.body().contains("This API method requires billing to be enabled. Please enable billing on project"));
     } else {
       assertEquals(result.statusCode(), 200);
     }
@@ -143,4 +152,19 @@ public class GeminiDataRequestServiceTest {
     httpClientMockedStatic.when(() -> httpClient.send(ArgumentMatchers.any(), ArgumentMatchers.any()))
         .thenReturn(httpResponse);
   }
+
+  private File createTempFile() {
+    try {
+      File file = File.createTempFile("test", ".json");
+      String vertexaiKeyContent = System.getProperty("vertexaiKeyContent");
+      FileWriter writer = new FileWriter(file);
+      writer.write(vertexaiKeyContent);
+      writer.close();
+      return file;
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return null;
+  }
 }
+

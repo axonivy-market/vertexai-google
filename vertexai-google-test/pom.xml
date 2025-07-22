@@ -88,7 +88,7 @@
             <vertexaiProjectId>${vertexai.projectId}</vertexaiProjectId>
             <vertexaiLocation>${vertexai.location}</vertexaiLocation>
             <vertexaiModelName>${vertexai.modelName}</vertexaiModelName>
-            <vertexaiKeyFilePath>${vertexai.keyFilePath}</vertexaiKeyFilePath>
+            <vertexaiKeyContent>${vertexai.keyContent}</vertexaiKeyContent>
             <geminiApiKey>${gemini.apiKey}</geminiApiKey>
           </systemPropertyVariables>
           <statelessTestsetReporter
