@@ -9,11 +9,13 @@ public class VertexaiTestUtils {
     String vertexaiLocation = System.getProperty("vertexaiLocation");
     String vertexaiModelName = System.getProperty("vertexaiModelName");
     String geminiApiKey = System.getProperty("geminiApiKey");
+    String vertexaiKeyFilePath = System.getProperty("vertexaiKeyFilePath");
 
     fixture.var("gemini.apiKey", geminiApiKey);
     fixture.var("vertexaiGemini.projectId", vertexaiProjectId);
     fixture.var("vertexaiGemini.location", vertexaiLocation);
     fixture.var("vertexaiGemini.modelName", vertexaiModelName);
+    fixture.var("vertexaiGemini.keyFilePath", vertexaiKeyFilePath);
 
   }
 
