@@ -34,7 +34,6 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
@@ -159,7 +158,6 @@ public class GeminiDataRequestServiceTest {
       File file = File.createTempFile("test", ".json");
       String vertexaiKeyContent = System.getProperty("vertexaiKeyContent");
       FileWriter writer = new FileWriter(file);
-      System.out.print("no ne " + file.getAbsolutePath());
       writer.write(vertexaiKeyContent);
       writer.close();
       return file;
