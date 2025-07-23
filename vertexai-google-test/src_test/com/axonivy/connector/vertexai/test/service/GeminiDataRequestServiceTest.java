@@ -159,8 +159,7 @@ public class GeminiDataRequestServiceTest {
       File file = File.createTempFile("test", ".json");
       String vertexaiKeyContent = System.getProperty("vertexaiKeyContent");
       FileWriter writer = new FileWriter(file);
-      Ivy.log().warn(vertexaiKeyContent);
-      System.out.print(vertexaiKeyContent);
+      System.out.print("no ne " + file.getAbsolutePath());
       writer.write(vertexaiKeyContent);
       writer.close();
       return file;
