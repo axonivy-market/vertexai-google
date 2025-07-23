@@ -10,28 +10,16 @@ on:
 jobs:
   prepare:
     runs-on: ubuntu-latest
-    outputs:
-      mvnArgs: ${{ steps.set-args.outputs.mvnArgs }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Create Vertex AI service account key
         run: |
-          echo '${{ secrets.VERTEXAI_KEY_CONTENT }}' > vertex-key.json
-
-      - name: Set mvnArgs
-        id: set-args
-        run: |
-          echo "mvnArgs=-Dgemini.apiKey=${{ secrets.GEMINI_APIKEY }} \
-            -Dvertexai.projectId=${{ secrets.VERTEXAI_PROJECTID }} \
-            -Dvertexai.location=${{ secrets.VERTEXAI_LOCATION }} \
-            -Dvertexai.modelName=${{ secrets.VERTEXAI_MODEL_NAME }} \
-            -Dvertexai.keyFilePath=vertex-key.json" >> $GITHUB_OUTPUT
+          echo '${{ secrets.VERTEXAI_KEY_CONTENT }}' > /tmp/vertex-key.json
 
   build:
     needs: prepare
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
     with:
-      secrets: |
-        mvnArgs=${{ needs.prepare.outputs.mvnArgs }}
+      secrets: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=/tmp/vertex-key.json
