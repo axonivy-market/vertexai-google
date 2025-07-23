@@ -4,11 +4,11 @@ on:
   push:
   pull_request:
   schedule:
-    - cron:  '21 21 * * *'
+    - cron: '21 21 * * *'
   workflow_dispatch:
 
 jobs:
-  prepare:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,7 +18,12 @@ jobs:
         run: |
           echo '${{ secrets.VERTEXAI_KEY_CONTENT }}' > /tmp/vertex-key.json
 
-  build:
-    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
-    secrets:
-      secrets: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=/tmp/vertex-key.json
+      - name: Run AxonIvy reusable CI workflow
+        uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
+        with:
+          mvnArgs: >-
+            -Dgemini.apiKey=${{ secrets.GEMINI_APIKEY }}
+            -Dvertexai.projectId=${{ secrets.VERTEXAI_PROJECTID }}
+            -Dvertexai.location=${{ secrets.VERTEXAI_LOCATION }}
+            -Dvertexai.modelName=${{ secrets.VERTEXAI_MODEL_NAME }}
+            -Dvertexai.keyFilePath=/tmp/vertex-key.json
