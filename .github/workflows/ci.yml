@@ -19,7 +19,6 @@ jobs:
           echo '${{ secrets.VERTEXAI_KEY_CONTENT }}' > /tmp/vertex-key.json
 
   build:
-    needs: prepare
     uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
-    with:
+    secrets:
       secrets: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=/tmp/vertex-key.json
