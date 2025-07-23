@@ -34,6 +34,7 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
 import ch.ivyteam.ivy.bpm.exec.client.IvyProcessTest;
 import ch.ivyteam.ivy.environment.AppFixture;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
@@ -49,8 +50,8 @@ public class GeminiDataRequestServiceTest {
   void beforeEach(ExtensionContext context, AppFixture fixture) {
     if (context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
       VertexaiTestUtils.setUpConfigForApiTest(fixture);
-//      tempFile = createTempFile();
-//      fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
+      tempFile = createTempFile();
+      fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
     } else {
       VertexaiTestUtils.setUpConfigForMockServer(fixture);
       geminiDataRequestServiceMock = Mockito.mockStatic(GeminiDataRequestServiceUtils.class);
@@ -67,7 +68,7 @@ public class GeminiDataRequestServiceTest {
       mockedServiceAccountCredentialsStatic.close();
       httpClientMockedStatic.close();
     } else {
-//      tempFile.deleteOnExit();
+      tempFile.deleteOnExit();
     }
     geminiDataRequestService.cleanData();
   }
@@ -158,6 +159,8 @@ public class GeminiDataRequestServiceTest {
       File file = File.createTempFile("test", ".json");
       String vertexaiKeyContent = System.getProperty("vertexaiKeyContent");
       FileWriter writer = new FileWriter(file);
+      Ivy.log().warn(vertexaiKeyContent);
+      System.out.print(vertexaiKeyContent);
       writer.write(vertexaiKeyContent);
       writer.close();
       return file;
