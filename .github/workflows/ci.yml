@@ -8,7 +8,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
-    secrets:
-      mvnArgs: -Dgemini.apiKey=${{secrets.GEMINI_APIKEY}} -Dvertexai.projectId=${{secrets.VERTEXAI_PROJECTID}} -Dvertexai.location=${{secrets.VERTEXAI_LOCATION}} -Dvertexai.modelName=${{secrets.VERTEXAI_MODEL_NAME}} -Dvertexai.keyFilePath=${{secrets.VERTEXAI_KEY_CONTENT}}
+  prepare-and-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: create Vertex AI service account key
+        run: |
+          echo '${{ secrets.VERTEXAI_KEY_CONTENT }}' > vertex-key.json
+
+      - name: Run AxonIvy CI Workflow
+        uses: axonivy-market/github-workflows/.github/workflows/ci.yml@v6
+        with:
+          secrets: |
+            mvnArgs=-Dgemini.apiKey=${{ secrets.GEMINI_APIKEY }} \
+              -Dvertexai.projectId=${{ secrets.VERTEXAI_PROJECTID }} \
+              -Dvertexai.location=${{ secrets.VERTEXAI_LOCATION }} \
+              -Dvertexai.modelName=${{ secrets.VERTEXAI_MODEL_NAME }} \
+              -Dvertexai.keyFilePath=vertex-key.json
+
+      - name: Delete Vertex key file
+        if: always()  # Ensures cleanup even if the build fails
+        run: rm -f vertex-key.json

@@ -49,8 +49,8 @@ public class GeminiDataRequestServiceTest {
   void beforeEach(ExtensionContext context, AppFixture fixture) {
     if (context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
       VertexaiTestUtils.setUpConfigForApiTest(fixture);
-      tempFile = createTempFile();
-      fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
+//      tempFile = createTempFile();
+//      fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
     } else {
       VertexaiTestUtils.setUpConfigForMockServer(fixture);
       geminiDataRequestServiceMock = Mockito.mockStatic(GeminiDataRequestServiceUtils.class);
@@ -67,7 +67,7 @@ public class GeminiDataRequestServiceTest {
       mockedServiceAccountCredentialsStatic.close();
       httpClientMockedStatic.close();
     } else {
-      tempFile.deleteOnExit();
+//      tempFile.deleteOnExit();
     }
     geminiDataRequestService.cleanData();
   }
