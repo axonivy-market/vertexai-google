@@ -5,7 +5,7 @@
         "role": "model",
         "parts": [
           {
-            "text": "Hello! What can I do for you today?"
+            "text": "1 + 1 = 2"
           }
         ]
       }
