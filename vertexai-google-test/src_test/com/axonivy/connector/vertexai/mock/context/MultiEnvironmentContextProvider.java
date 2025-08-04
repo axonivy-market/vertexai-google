@@ -20,9 +20,9 @@ public class MultiEnvironmentContextProvider implements TestTemplateInvocationCo
     String testEnv = System.getProperty(VertexaiTestConstants.END_TO_END_TESTING_ENVIRONMENT_KEY);
     return switch (testEnv) {
     case VertexaiTestConstants.END_TO_END_TESTING_ENVIRONMENT_VALUE ->
-      Stream.of(new TestEnironmentInvocationContext(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME));
+      Stream.of(new TestEnvironmentInvocationContext(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME));
     default ->
-      Stream.of(new TestEnironmentInvocationContext(VertexaiTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME));
+      Stream.of(new TestEnvironmentInvocationContext(VertexaiTestConstants.MOCK_SERVER_CONTEXT_DISPLAY_NAME));
     };
   }
 }
