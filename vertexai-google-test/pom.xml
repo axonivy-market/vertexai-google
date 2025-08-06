@@ -91,6 +91,7 @@
             <vertexaiModelName>${vertexai.modelName}</vertexaiModelName>
             <vertexaiKeyContent>${vertexai.keyContent}</vertexaiKeyContent>
             <geminiApiKey>${gemini.apiKey}</geminiApiKey>
+            <testEnvironment>${testEnvironment}</testEnvironment>
           </systemPropertyVariables>
           <statelessTestsetReporter
             implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5Xml30StatelessReporter">
