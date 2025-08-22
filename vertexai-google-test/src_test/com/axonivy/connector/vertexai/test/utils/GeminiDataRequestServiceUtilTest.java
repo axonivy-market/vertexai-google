@@ -15,15 +15,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import com.axonivy.connector.vertexai.BaseSetup;
 import com.axonivy.connector.vertexai.entities.Content;
-import com.axonivy.connector.vertexai.mock.utils.VertexaiTestUtils;
 import com.axonivy.connector.vertexai.utils.GeminiDataRequestServiceUtils;
 import com.google.gson.Gson;
 import ch.ivyteam.ivy.environment.AppFixture;
 import ch.ivyteam.ivy.environment.IvyTest;
 
 @IvyTest
-public class GeminiDataRequestServiceUtilTest {
+public class GeminiDataRequestServiceUtilTest extends BaseSetup{
 	public static final String IMG_TAG_PATTERN = "<img\\s+[^>]*>";
 	public static final String IMG_SRC_ATTR_PATTERN = "data:image\\/[^;]+;base64,([^\"]+)";
 
@@ -35,7 +35,7 @@ public class GeminiDataRequestServiceUtilTest {
 
 	@BeforeEach
 	void beforeEach(AppFixture fixture) {
-		VertexaiTestUtils.setUpConfigForMockServer(fixture);
+		runMockEnv(fixture).run();
 	}
 
 	@Test

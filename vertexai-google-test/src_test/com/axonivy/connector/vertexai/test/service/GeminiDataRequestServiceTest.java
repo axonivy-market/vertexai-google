@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
 import static org.mockito.Mockito.when;
+import static com.axonivy.utils.e2etest.enums.E2EEnvironment.REAL_SERVER;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,13 +23,13 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.mockito.ArgumentMatchers;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
+
+import com.axonivy.connector.vertexai.BaseSetup;
 import com.axonivy.connector.vertexai.enums.*;
 import com.axonivy.connector.vertexai.mock.DataMock;
-import com.axonivy.connector.vertexai.mock.constants.VertexaiTestConstants;
-import com.axonivy.connector.vertexai.mock.context.MultiEnvironmentContextProvider;
-import com.axonivy.connector.vertexai.mock.utils.VertexaiTestUtils;
 import com.axonivy.connector.vertexai.service.GeminiDataRequestService;
 import com.axonivy.connector.vertexai.utils.GeminiDataRequestServiceUtils;
+import com.axonivy.utils.e2etest.context.MultiEnvironmentContextProvider;
 import com.google.auth.oauth2.AccessToken;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.auth.oauth2.ServiceAccountCredentials;
@@ -37,22 +38,23 @@ import ch.ivyteam.ivy.environment.AppFixture;
 
 @IvyProcessTest(enableWebServer = true)
 @ExtendWith(MultiEnvironmentContextProvider.class)
-public class GeminiDataRequestServiceTest {
+public class GeminiDataRequestServiceTest extends BaseSetup {
   private GeminiDataRequestService geminiDataRequestService;
   MockedStatic<GeminiDataRequestServiceUtils> geminiDataRequestServiceMock;
   MockedStatic<ServiceAccountCredentials> mockedServiceAccountCredentialsStatic;
   MockedStatic<HttpClient> httpClientMockedStatic;
-
+  private boolean isRealTest;
   private static File tempFile = null;
 
   @BeforeEach
   void beforeEach(ExtensionContext context, AppFixture fixture) {
-    if (context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
-      VertexaiTestUtils.setUpConfigForApiTest(fixture);
+    isRealTest = context.getDisplayName().equals(REAL_SERVER.getDisplayName());
+    if (isRealTest) {
+      runRealEnv(fixture).run();;
       tempFile = createTempFile();
       fixture.var("vertexaiGemini.keyFilePath", tempFile.getAbsolutePath());
     } else {
-      VertexaiTestUtils.setUpConfigForMockServer(fixture);
+      runMockEnv(fixture).run();
       geminiDataRequestServiceMock = Mockito.mockStatic(GeminiDataRequestServiceUtils.class);
       mockedServiceAccountCredentialsStatic = Mockito.mockStatic(ServiceAccountCredentials.class);
       httpClientMockedStatic = mockStatic(HttpClient.class);
@@ -62,7 +64,7 @@ public class GeminiDataRequestServiceTest {
 
   @AfterEach
   void afterEach(ExtensionContext context) {
-    if (!context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME)) {
+    if (!isRealTest) {
       geminiDataRequestServiceMock.close();
       mockedServiceAccountCredentialsStatic.close();
       httpClientMockedStatic.close();
@@ -75,7 +77,6 @@ public class GeminiDataRequestServiceTest {
   @TestTemplate
   public void testSendRequestToGemini_SuccessResponse(ExtensionContext context)
       throws IOException, InterruptedException {
-    boolean isRealTest = context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     String message = "";
     if (!isRealTest) {
       mockAccessToken();
@@ -92,7 +93,6 @@ public class GeminiDataRequestServiceTest {
   @TestTemplate
   public void testSendRequestToVertexGemini_SuccessResponse(ExtensionContext context)
       throws IOException, InterruptedException {
-    boolean isRealTest = context.getDisplayName().equals(VertexaiTestConstants.REAL_CALL_CONTEXT_DISPLAY_NAME);
     String message = "";
     if (!isRealTest) {
       mockAccessToken();
