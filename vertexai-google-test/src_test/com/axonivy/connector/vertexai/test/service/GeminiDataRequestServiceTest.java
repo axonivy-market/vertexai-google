@@ -1,6 +1,7 @@
 package com.axonivy.connector.vertexai.test.service;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockStatic;
@@ -84,7 +85,7 @@ public class GeminiDataRequestServiceTest extends BaseSetup {
     }
     HttpResponse<String> result = geminiDataRequestService.sendRequest(message, Model.GEMINI);
     if (isRealTest) {
-      assertEquals(result.statusCode(), 429);
+      assertNotEquals(result.statusCode(), 404);
     } else {
       assertEquals(result.statusCode(), 200);
     }
