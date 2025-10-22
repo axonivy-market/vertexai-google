@@ -84,6 +84,7 @@ public class GeminiDataRequestServiceTest extends BaseSetup {
     }
     HttpResponse<String> result = geminiDataRequestService.sendRequest(message, Model.GEMINI);
     if (isRealTest) {
+      System.out.println("#testSendRequestToGemini_SuccessResponse: " + result.toString());
       assertEquals(result.statusCode(), 404);
     } else {
       assertEquals(result.statusCode(), 200);
