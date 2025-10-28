@@ -31,7 +31,7 @@ public class GeminiDataRequestService {
   public static final String VERTEX_URL =
       "https://{0}-aiplatform.googleapis.com/v1/projects/{1}/locations/{0}/publishers/google/models/{2}:generateContent";
   public static final String GEMINI_URL =
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-latest:generateContent?key={0}";
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key={0}";
   public static final List<String> vertexAiScopes = List.of("https://www.googleapis.com/auth/cloud-platform");
 
   public static String VERTEX_PROJECT_ID = Ivy.var().get("vertexaiGemini.projectId");
