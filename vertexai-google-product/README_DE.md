@@ -1,43 +1,43 @@
-# Vertex AI Google.
+# Vertex AI Google
 
-Vertex AI is a platform offered by Google Cloud designed specifically for developing and deploying machine learning models. It provides a suite of services and tools to support the entire lifecycle of machine learning projects, from data processing and preparation to model development, deployment, and management in production. 
+Vertex AI ist eine Plattform von Google Cloud, die speziell für die Entwicklung und Bereitstellung von maschinellen Lernmodellen entwickelt wurde. Es bietet eine Reihe von Dienstleistungen und Werkzeugen, um den gesamten Lebenszyklus von maschinellen Lernprojekten zu unterstützen, von der Datenverarbeitung und Vorbereitung bis zur Modellentwicklung, Bereitstellung und Management in der Produktion. 
 
-For our connector, we have focused on the Gemini model. Gemini is an AI model, optimized for multimodal tasks, particularly **processing visual and textual inputs**. It enables functionalities such as 
-- visual understanding
-- classification
-- summarization
-- and text generation based on images.
+Für unseren Steckverbinder haben wir uns auf das Gemini-Modell konzentriert. Gemini ist ein KI-Modell, optimiert für multimodale Aufgaben, insbesondere **verarbeitende visuelle und textuelle Eingaben*. Es ermöglicht Funktionalitäten wie
+- visuelles Verständnis
+- Klassifizierung
+- Zusammenfassung
+- und Texterzeugung basierend auf Bildern.
 
-## Demo
+oder Demonstranten
 
-### Use Case: Text Generation based on images
+### Use Case: Texterzeugung auf der Grundlage von Bildern
 
-![](images/chat-with-gemini.jpg)
+![](bilder/chat-with-gemini.jpg)
 
-### Switch between the two models using a dropdown menu
+### Wechseln zwischen den beiden Modellen mit einem Dropdown-Menü
 
-![](images/select-model-to-chat.jpg) 
+![](bilder/auswahl-modell-zu-chat.jpg) 
 
-Note: For our simple "Cat-Use-Case" it does not make a difference using the Vertex-AI-Gemini-API or the Gemini-API directly.
+Hinweis: Für unsere einfache "Cat-Use-Case" macht es keinen Unterschied mit der Vertex-AI-Gemini-API oder der Gemini-API direkt.
 
-- Use **Vertex AI Gemini API** if you rather would like to use the cloud based Google AI universe (BigDataQuery, ModelTraining and - deployment, Monitoring and logging).
-- If you are looking for a rather flexible, low-cost and ease of use API than use the **Gemini-API** directly.
+- Verwenden Sie **Vertex AI Gemini API**, wenn Sie lieber das Cloud-basierte Google AI-Universum (BigDataQuery, ModelTraining und - Bereitstellung, Monitoring und Protokollierung) verwenden möchten.
+- Ja. Wenn Sie auf der Suche nach einer eher flexiblen, kostengünstigen und einfachen Verwendung API als die **Gemini-API** direkt verwenden.
 
-## Setup
+- Setup
 
 ### Gemini
 
-#### Go to Gemini: [Gemini Online](https://aistudio.google.com/app/apikey) and create an API-key
+oder Gehen Sie zu Gemini: [Gemini Online](https://aistudio.google.com/app/apikey) und erstellen Sie einen API-Schlüssel
 
-![](images/create-new-API-key-for-gemini.jpg)
+![](Bilder/create-new-API-key-for-gemini.jpg)
 
-#### Get the API key
+oder Erhalten Sie den API-Schlüssel
 
-![](images/generated-gemini-key.jpg)
+![](bilder/generiert-gemini-key.jpg)
 
 ### VertexAI
 
-#### Log in to [Vertex Online](https://console.cloud.google.com/) with account
+oder Melden Sie sich an [Vertex Online](https://console.cloud.google.com/) mit Konto
 
 #### Select Dashboard -> Create a new project
 
@@ -75,13 +75,13 @@ Note: For our simple "Cat-Use-Case" it does not make a difference using the Vert
 
 #### Select the Location from: [Vertex AI Location/Region](https://cloud.google.com/compute/docs/regions-zones)
 
-Add the following `Variables` to your `variables.yaml`:
+Fügen Sie die folgenden `Variables` zu Ihren `variables. yaml`:
 
 ```
 @variables.yaml@
 ```
 
-and replace the values with your given setup.
+und die werte durch ihr vorgegebenes setup ersetzen.
 
 > [!NOTE]
 > The variable path `vertexai-gemini` is renamed to `vertexaiGemini` from 13.
