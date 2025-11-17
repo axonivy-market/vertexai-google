@@ -1,4 +1,4 @@
-# Vertex AI Google
+Vertex AI Google
 
 Vertex AI ist eine Plattform von Google Cloud, die speziell für die Entwicklung und Bereitstellung von maschinellen Lernmodellen entwickelt wurde. Es bietet eine Reihe von Dienstleistungen und Werkzeugen, um den gesamten Lebenszyklus von maschinellen Lernprojekten zu unterstützen, von der Datenverarbeitung und Vorbereitung bis zur Modellentwicklung, Bereitstellung und Management in der Produktion. 
 
