@@ -39,49 +39,49 @@ oder Erhalten Sie den API-Schlüssel
 
 oder Melden Sie sich an [Vertex Online](https://console.cloud.google.com/) mit Konto
 
-#### Select Dashboard -> Create a new project
+#### #Ausgewählt Armaturenbrett -> Schaffen ein neues Projekt
 
-![](images/create-new-project-in-vertexAi.jpg)
+![](Images/schaffen-neu-Projekt-herein-vertexAi.jpg)
 
-#### Copy "Project ID" from project to push to variables file
+#### Kopie "Projiziert ID" von projiziert zu drängen zu Variablen Datei
 
-#### From Dashboard, scroll down to "Getting Started" and select "Explore and enable APIs"
+#### Von Armaturenbrett, #Buchrolle Hügelland zu "#loslegen" und #ausgewählt "Erkunden und aktivieren APIs"
 
-![](images/select-and-enable-apis.jpg)
+![](Images/#ausgewählt-und-aktivieren-apis.jpg)
 
-#### Select "ENABLE APIS AND SERVICES"
+#### #Auswählen "#AKTIVIEREN APIS UND BEDIENUNGEN"
 
-![](images/select-enable-apis-and-services.jpg)
+![](Images/#ausgewählt-aktivieren-apis-und-Bedienungen.jpg)
 
-#### Search "vertex ai api" and enable it (Google Cloud will request billing account) in [Model Garden Gemini-1.5 pro](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001)
+#### Suche "Scheitel ai api" und aktivieren ihm (#Google Wolke wollen auffordern berechnen Konto) herein [Model Garten #Zwillinge-1.5 pro](https://Konsole.Wolke.google.com/Scheitel-ai/Verleger/google/Model-#gärtnern/gemini-1.5-pro-001)
 
-#### Go back to the main page of Google cloud and select **_"IAM & Admin"_**
+#### Geh zurück zu der hauptsächlichen Seite von #Google Wolke und auswählen *_"IAM & Admin"_**
 
-#### Select **_"IAM & Admin"_** -> **_"Service Accounts"_** -> **_"Create Service Account"_**
+#### #Ausgewählt *_"IAM & Admin"_** -> *_"#Bespringen Verrechnet"_** -> *_"Schaffen Bedienung Konto"_**
 
-![](images/go-to-setup-IAM-Admin.jpg)
+![](Images/gehen-zu-Einrichtung-IAM-Admin.jpg)
 
-#### Create an account and grant permission/role for this account
+#### Schaff ein Konto und gewähr Erlaubnis/Rolle für dieses Konto
 
-#### Select the account that just created and select "Key" and choose "ADD key"
+#### Wähl aus das Konto jener einfach geschaffenen und #ausgewählt "Schlüssel" und auswählen "#ZUFÜGEN Schlüssel"
 
-![](images/get-Key.jpg)
+![](Images/bekommen-Schlüssel.jpg)
 
-#### "ADD Key" -> "Create new Key" -> "Json" -> Google Cloud automatically download a credential json file.
+#### "FÜG ZU Schlüssel" -> "Schaffen neuen Schlüssel" -> "Json" -> #Google Wolke herunterladen automatisch einen #Berechtigungsnachweis json Datei.
 
-#### Keep this file and put the path of the file to `Variables.vertexaiGemini.keyFilePath`
+#### Behalte diese Datei und legen den Pfad von der Datei zu `Variablen.vertexaiGemini.keyFilePath`
 
-#### Select the modelName from: [Vertex AI Gemini Model name](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001)
+#### Wähl aus das modelName von: [Scheitel AI #Zwillinge Model Name](https://Konsole.Wolke.google.com/Scheitel-ai/Verleger/google/Model-#gärtnern/gemini-1.5-pro-001)
 
-#### Select the Location from: [Vertex AI Location/Region](https://cloud.google.com/compute/docs/regions-zones)
+#### Wähl aus den Drehort von: [Scheitel AI Drehort/Region](https://Wolke.google.com/Berechnen/docs/Regionen-Zonen)
 
 Fügen Sie die folgenden `Variables` zu Ihren `variables. yaml`:
 
 ```
-@variables.yaml@
+@Variablen.yaml@
 ```
 
 und die werte durch ihr vorgegebenes setup ersetzen.
 
-> [!NOTE]
-> The variable path `vertexai-gemini` is renamed to `vertexaiGemini` from 13.
+> [!BEACHTE]
+> Den variablen Pfad `vertexai-gemini` ist #umbenennen zu `vertexaiGemini` von 13.
