@@ -1,87 +1,87 @@
-Vertex AI Google
+# Vertex AI Google
 
-Vertex AI ist eine Plattform von Google Cloud, die speziell für die Entwicklung und Bereitstellung von maschinellen Lernmodellen entwickelt wurde. Es bietet eine Reihe von Dienstleistungen und Werkzeugen, um den gesamten Lebenszyklus von maschinellen Lernprojekten zu unterstützen, von der Datenverarbeitung und Vorbereitung bis zur Modellentwicklung, Bereitstellung und Management in der Produktion. 
+Vertex AI ist eine von Google Cloud angebotene Plattform, die speziell für die Entwicklung und Bereitstellung von Machine-Learning-Modellen konzipiert wurde. Sie bietet eine Reihe von Diensten und Tools zur Unterstützung des gesamten Lebenszyklus von Machine-Learning-Projekten, von der Datenverarbeitung und -aufbereitung bis hin zur Modellentwicklung, Bereitstellung und Verwaltung in der Produktion. 
 
-Für unseren Steckverbinder haben wir uns auf das Gemini-Modell konzentriert. Gemini ist ein KI-Modell, optimiert für multimodale Aufgaben, insbesondere **verarbeitende visuelle und textuelle Eingaben*. Es ermöglicht Funktionalitäten wie
+Für unseren Konnektor haben wir uns auf das Gemini-Modell konzentriert. Gemini ist ein KI-Modell, das für multimodale Aufgaben optimiert ist, insbesondere für die **Verarbeitung visueller und textueller Eingaben**. Es ermöglicht Funktionen wie 
 - visuelles Verständnis
 - Klassifizierung
 - Zusammenfassung
-- und Texterzeugung basierend auf Bildern.
+- und Textgenerierung auf der Grundlage von Bildern.
 
-oder Demonstranten
+## Demo
 
-### Use Case: Texterzeugung auf der Grundlage von Bildern
+### Anwendungsfall: Textgenerierung auf Basis von Bildern
 
-![](bilder/chat-with-gemini.jpg)
+![](images/chat-with-gemini.jpg)
 
-### Wechseln zwischen den beiden Modellen mit einem Dropdown-Menü
+### Wechseln Sie mithilfe eines Dropdown-Menüs zwischen den beiden Modellen.
 
-![](bilder/auswahl-modell-zu-chat.jpg) 
+![](images/select-model-to-chat.jpg) 
 
-Hinweis: Für unsere einfache "Cat-Use-Case" macht es keinen Unterschied mit der Vertex-AI-Gemini-API oder der Gemini-API direkt.
+Hinweis: Für unseren einfachen „Cat-Use-Case” macht es keinen Unterschied, ob Sie die Vertex-AI-Gemini-API oder die Gemini-API direkt verwenden.
 
-- Verwenden Sie **Vertex AI Gemini API**, wenn Sie lieber das Cloud-basierte Google AI-Universum (BigDataQuery, ModelTraining und - Bereitstellung, Monitoring und Protokollierung) verwenden möchten.
-- Ja. Wenn Sie auf der Suche nach einer eher flexiblen, kostengünstigen und einfachen Verwendung API als die **Gemini-API** direkt verwenden.
+- Verwenden Sie die **Vertex AI Gemini API**, wenn Sie lieber das cloudbasierte Google AI-Universum (BigDataQuery, ModelTraining und - Deployment, Monitoring und Logging) nutzen möchten.
+- Wenn Sie eine eher flexible, kostengünstige und benutzerfreundliche API suchen, verwenden Sie direkt die **Gemini-API**.
 
-- Setup
+## Einrichtung
 
 ### Gemini
 
-oder Gehen Sie zu Gemini: [Gemini Online](https://aistudio.google.com/app/apikey) und erstellen Sie einen API-Schlüssel
+#### Gehen Sie zu Gemini: [Gemini Online](https://aistudio.google.com/app/apikey) und erstellen Sie einen API-Schlüssel.
 
-![](Bilder/create-new-API-key-for-gemini.jpg)
+![](images/create-new-API-key-for-gemini.jpg)
 
-oder Erhalten Sie den API-Schlüssel
+#### API-Schlüssel abrufen
 
-![](bilder/generiert-gemini-key.jpg)
+![](images/generated-gemini-key.jpg)
 
 ### VertexAI
 
-oder Melden Sie sich an [Vertex Online](https://console.cloud.google.com/) mit Konto
+#### Melden Sie sich mit Ihrem Konto bei [Vertex Online](https://console.cloud.google.com/) an.
 
-#### #Ausgewählt Armaturenbrett -> Schaffen ein neues Projekt
+#### Wählen Sie Dashboard -> Neues Projekt erstellen
 
-![](Images/schaffen-neu-Projekt-herein-vertexAi.jpg)
+![](images/create-new-project-in-vertexAi.jpg)
 
-#### Kopie "Projiziert ID" von projiziert zu drängen zu Variablen Datei
+#### Kopieren Sie die „Projekt-ID” aus dem Projekt in die Variablendatei.
 
-#### Von Armaturenbrett, #Buchrolle Hügelland zu "#loslegen" und #ausgewählt "Erkunden und aktivieren APIs"
+#### Scrollen Sie im Dashboard nach unten zu „Erste Schritte“ und wählen Sie „APIs erkunden und aktivieren“ aus.
 
-![](Images/#ausgewählt-und-aktivieren-apis.jpg)
+![](images/select-and-enable-apis.jpg)
 
-#### #Auswählen "#AKTIVIEREN APIS UND BEDIENUNGEN"
+#### Wählen Sie „APIs UND DIENSTE AKTIVIEREN”.
 
-![](Images/#ausgewählt-aktivieren-apis-und-Bedienungen.jpg)
+![](images/select-enable-apis-and-services.jpg)
 
-#### Suche "Scheitel ai api" und aktivieren ihm (#Google Wolke wollen auffordern berechnen Konto) herein [Model Garten #Zwillinge-1.5 pro](https://Konsole.Wolke.google.com/Scheitel-ai/Verleger/google/Model-#gärtnern/gemini-1.5-pro-001)
+#### Suchen Sie nach „vertex ai api“ und aktivieren Sie es (Google Cloud fordert ein Abrechnungskonto an) in [Model Garden Gemini-1.5 pro](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001).
 
-#### Geh zurück zu der hauptsächlichen Seite von #Google Wolke und auswählen *_"IAM & Admin"_**
+#### Kehren Sie zur Hauptseite von Google Cloud zurück und wählen Sie **_„IAM & Admin“_** aus.
 
-#### #Ausgewählt *_"IAM & Admin"_** -> *_"#Bespringen Verrechnet"_** -> *_"Schaffen Bedienung Konto"_**
+#### Wählen Sie **_„IAM & Admin“_** -> **_„Dienstkonten“_** -> **_„Dienstkonto erstellen“_**
 
-![](Images/gehen-zu-Einrichtung-IAM-Admin.jpg)
+![](images/go-to-setup-IAM-Admin.jpg)
 
-#### Schaff ein Konto und gewähr Erlaubnis/Rolle für dieses Konto
+#### Erstellen Sie ein Konto und erteilen Sie diesem Konto Berechtigungen/Rollen.
 
-#### Wähl aus das Konto jener einfach geschaffenen und #ausgewählt "Schlüssel" und auswählen "#ZUFÜGEN Schlüssel"
+#### Wählen Sie das soeben erstellte Konto aus, wählen Sie „Schlüssel” und dann „Schlüssel hinzufügen”.
 
-![](Images/bekommen-Schlüssel.jpg)
+![](images/get-Key.jpg)
 
-#### "FÜG ZU Schlüssel" -> "Schaffen neuen Schlüssel" -> "Json" -> #Google Wolke herunterladen automatisch einen #Berechtigungsnachweis json Datei.
+#### „ADD Key“ -> „Create new Key“ -> „Json“ -> Google Cloud lädt automatisch eine JSON-Datei mit Anmeldedaten herunter.
 
-#### Behalte diese Datei und legen den Pfad von der Datei zu `Variablen.vertexaiGemini.keyFilePath`
+#### Behalten Sie diese Datei und fügen Sie den Pfad der Datei in `Variables.vertexaiGemini.keyFilePath` ein.
 
-#### Wähl aus das modelName von: [Scheitel AI #Zwillinge Model Name](https://Konsole.Wolke.google.com/Scheitel-ai/Verleger/google/Model-#gärtnern/gemini-1.5-pro-001)
+#### Wählen Sie den Modellnamen aus: [Vertex AI Gemini Model name](https://console.cloud.google.com/vertex-ai/publishers/google/model-garden/gemini-1.5-pro-001)
 
-#### Wähl aus den Drehort von: [Scheitel AI Drehort/Region](https://Wolke.google.com/Berechnen/docs/Regionen-Zonen)
+#### Wählen Sie den Standort aus: [Vertex AI Standort/Region](https://cloud.google.com/compute/docs/regions-zones)
 
-Fügen Sie die folgenden `Variables` zu Ihren `variables. yaml`:
+Fügen Sie die folgenden `Variablen` zu Ihrer `variables.yaml` hinzu:
 
 ```
-@Variablen.yaml@
+@variables.yaml@
 ```
 
-und die werte durch ihr vorgegebenes setup ersetzen.
+Ersetzen Sie die Werte durch Ihre angegebenen Einstellungen.
 
-> [!BEACHTE]
-> Den variablen Pfad `vertexai-gemini` ist #umbenennen zu `vertexaiGemini` von 13.
+> [!HINWEIS]
+> Der variable Pfad „vertexai-gemini” wird ab Version 13 in „vertexaiGemini” umbenannt.
