@@ -10,7 +10,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PF;
@@ -81,7 +81,7 @@ public class GeminiDataBean {
 		String convertedString = htmlText;
 		for (String prefix : PREFIXES) {
 			if (htmlText.startsWith(prefix)) {
-				convertedString = StringEscapeUtils.escapeHtml(htmlText);
+				convertedString = StringEscapeUtils.escapeHtml4(htmlText);
 				break;
 			}
 		}
@@ -117,7 +117,7 @@ public class GeminiDataBean {
 		while (emojiMatcher.find()) {
 			// Escape the text before the current emoji
 			String beforeEmoji = text.substring(lastEnd, emojiMatcher.start());
-			String escapeValue = StringEscapeUtils.escapeHtml(beforeEmoji);
+			String escapeValue = StringEscapeUtils.escapeHtml4(beforeEmoji);
 			escapedText.append(escapeValue);
 			// Append the current emoji without escaping
 			escapedText.append(emojiMatcher.group());
@@ -126,7 +126,7 @@ public class GeminiDataBean {
 
 		// Escape any remaining text after the last emoji
 		String afterLastEmoji = text.substring(lastEnd);
-		String escapeValue = StringEscapeUtils.escapeHtml(afterLastEmoji);
+		String escapeValue = StringEscapeUtils.escapeHtml4(afterLastEmoji);
 		escapedText.append(escapeValue);
 
 		return escapedText.toString();
