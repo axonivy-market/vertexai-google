@@ -7,14 +7,14 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>${project.name}</module>
-    <module>${project.name}-demo</module>
-    <module>${project.name}-test</module>
-    <module>${project.name}-product</module>
+    <module>vertexai-google</module>
+    <module>vertexai-google-demo</module>
+    <module>vertexai-google-test</module>
+    <module>vertexai-google-product</module>
   </modules>
 
   <scm>
-    <developerConnection>scm:git:https://github.com/axonivy-market/${project.name}.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/axonivy-market/vertexai-google.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
 
