@@ -1,14 +1,15 @@
 package com.axonivy.connector.vertexai.managedBean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import jakarta.annotation.PostConstruct;
+import jakarta.inject.Named;
+import jakarta.faces.view.ViewScoped;
 
 import org.apache.commons.text.StringEscapeUtils;
 import org.apache.commons.lang3.BooleanUtils;
@@ -20,9 +21,9 @@ import com.axonivy.connector.vertexai.enums.Model;
 import com.axonivy.connector.vertexai.enums.Role;
 import com.axonivy.connector.vertexai.service.GeminiDataRequestService;
 
-@ManagedBean
+@Named
 @ViewScoped
-public class GeminiDataBean {
+public class GeminiDataBean implements Serializable {
 	private String inputtedMessage;
 	private Model model;
 	private List<Conversation> conversations;
