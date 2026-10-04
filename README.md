@@ -1,4 +1,5 @@
 # vertexai-google
+Product is not SUpported anymore
 
 [![CI Build](https://github.com/axonivy-market/vertexai-google/actions/workflows/ci.yml/badge.svg)](https://github.com/axonivy-market/vertexai-google/actions/workflows/ci.yml)
 
